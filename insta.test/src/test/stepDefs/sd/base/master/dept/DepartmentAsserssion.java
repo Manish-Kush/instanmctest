@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import pom.settings.hospitaladminmaster.Departments.DepartmentMasterWebElements;
 import pom.settings.hospitaladminmaster.Departments.sections.addoreditdepartmentscreen.AddOrEditDepartmentWebElements;
 import pom.settings.hospitaladminmaster.Departments.sections.departmentmasterdashboard.Search;
-import sd.base.CommonActions;
+import sd.base.ConfigReader;
 import sd.base.XLUtils;
 import sd.infra.HisTestContext;
 
@@ -18,10 +18,11 @@ public class DepartmentAsserssion {
 	public DepartmentMasterWebElements departmentMasterWebElements;
 	public AddOrEditDepartmentWebElements addOrEditDepartmentWebElements;
 
-	public static String xlFile = "/home/debjyoti/Desktop/Automation_With_BDD/NMC_BDD/resources/RegInfo.xlsx";
+	public static String xlFile;
 	public static String xlSheet = "DepartmentData";
 
 	HisTestContext context;
+	ConfigReader configReader;
 
 	public DepartmentAsserssion(HisTestContext context) {
 		this.context = context;
@@ -29,6 +30,8 @@ public class DepartmentAsserssion {
 		departmentScenarios = new DepartmentScenarios(context);
 		search = new Search(context);
 		departmentMasterWebElements = new DepartmentMasterWebElements(context.getDriver());
+		configReader = new ConfigReader();
+		xlFile = configReader.getExcelRegInfoDataPath();
 	}
 
 	@Then("department should list in dash board")

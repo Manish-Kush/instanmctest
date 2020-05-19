@@ -64,10 +64,7 @@ public class HisTestContext {
 			FirefoxOptions option = new FirefoxOptions();
 			option.setHeadless(false); // Set the setHeadless is equal to true which will run test in Headless mode
 			driver = new FirefoxDriver(option); // Instantiation(i.e create firefox driver object)
-		} else if (browser.equalsIgnoreCase("phantomjs")) {
-			System.setProperty("phantomjs.binary.path", readConfig.getPhantomjsPath());
-			driver = new PhantomJSDriver(); // Instantiation(i.e create firefox driver object)
-		} else if (browser.equalsIgnoreCase("ie")) {
+		}  else if (browser.equalsIgnoreCase("ie")) {
 			System.setProperty("webdriver.ie.driver", readConfig.getIEPath());
 			driver = new InternetExplorerDriver();
 		}

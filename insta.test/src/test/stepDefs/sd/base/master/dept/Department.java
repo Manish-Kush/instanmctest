@@ -2,6 +2,7 @@ package sd.base.master.dept;
 
 import org.openqa.selenium.WebDriver;
 
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import pom.settings.hospitaladminmaster.Departments.sections.addoreditdepartmentscreen.AddOrEditDepartmentWebElements;
 import sd.base.CommonActions;
@@ -52,4 +53,5 @@ public class Department {
 	public String GetId() {
 		return commonActions.getAttributeValue("value", addOrEditDepartmentWebElements.getDeptId());
 	}
+
 }

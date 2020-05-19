@@ -62,3 +62,8 @@ Feature: Departments
     And "Non Clinical" option is selected in Department Type drop down
     Then department should list in dash board
     And department type should be updated
+    
+  @DummyTest
+  Scenario: Add new Department and verify whether we are able to create.
+    Given navigated to Add Department screen
+    When department details entered

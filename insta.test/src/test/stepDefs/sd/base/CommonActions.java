@@ -20,8 +20,9 @@ public class CommonActions {
 
 	Robot robot;
 	public Alert alert;
-	public String xlFile = "./src/test/resources/data/resources/RegInfo.xlsx";
+	public String xlFile = "";
 	public String xlSheet = "DepartmentData";
+	public ConfigReader configReader;
 
 	
 
@@ -32,6 +33,8 @@ public class CommonActions {
 	 */
 	public CommonActions(WebDriver driver) {
 		this.driver = driver;
+		configReader = new ConfigReader();
+		xlFile = configReader.getExcelRegInfoDataPath();
 	}
 
 	// click on element.
