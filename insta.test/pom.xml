@@ -20,6 +20,9 @@
 		<selenium.version>3.141.59</selenium.version>
 		<poi.version>4.0.1</poi.version>
 		<extentreports.version>4.0.9</extentreports.version>
+		<codeborne.version>1.2.1</codeborne.version>
+		<commons-io.version>2.6</commons-io.version>
+		<commons-lang3.version>3.8.1</commons-lang3.version>
 	</properties>
 
 	<dependencies>
@@ -112,14 +115,29 @@
 		<dependency>
 			<groupId>com.codeborne</groupId>
 			<artifactId>phantomjsdriver</artifactId>
-			<version>1.2.1</version>
+			<version>${codeborne.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<!-- Provides highly reusable static utility methods, chiefly concerned 
+			with adding value to the java.lang classes. -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
 		</dependency>
 
 	</dependencies>
 
-
-
 	<build>
+		<testSourceDirectory>src/test/runner</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -140,6 +158,9 @@
 								<source>src/test/tags</source>
 								<source>src/test/features</source>
 							</sources>
+							<!-- <suiteXmlFiles>
+								<suiteXmlFile>testng.xml</suiteXmlFile>
+							</suiteXmlFiles> -->
 						</configuration>
 					</execution>
 				</executions>
@@ -163,7 +184,7 @@
 						
 				<configuration>
 		          <suiteXmlFiles>
-		            <suiteXmlFile>testng.xml</suiteXmlFile>
+		            <suiteXmlFile>vitalFormTest.xml</suiteXmlFile>
 		          </suiteXmlFiles>
 		        </configuration>
 			</plugin>

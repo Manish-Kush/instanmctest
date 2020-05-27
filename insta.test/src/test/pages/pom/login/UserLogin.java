@@ -4,11 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import lombok.Getter;
 /**
  * All the Web Element of the Login page
  * @author manish
  *
  */
+@Getter
 public class UserLogin
 {
 	// PageFactory for initializing webElements
@@ -20,18 +23,21 @@ public class UserLogin
 	 * Web elements in the login page
 	 */
 	@FindBy(id = "hospital")
-	public WebElement hospital;
+	private WebElement hospital;
 	
 	@FindBy(id = "userId")
-	public WebElement userName;
+	private WebElement userName;
 
 	@FindBy(id = "password")
-	public WebElement password;
+	private WebElement password;
 
 	@FindBy(id = "button")
-	public WebElement submitButton;
+	private WebElement submitButton;
 	
 	@FindBy(linkText = "Remind Me Later")
-	public WebElement remindMeLaterLink;
+	private WebElement remindMeLaterLink;
+	
+	@FindBy(xpath = "//span[contains(text(),'Forgot Password?')]")
+	private WebElement forgotPassLink;
 
 }

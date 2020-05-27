@@ -21,17 +21,20 @@ import sd.base.ConfigReader;
  * close driver(tear down)
  */
 public class HisTestContext {
-	ConfigReader readConfig = new ConfigReader();
-
-	public String baseURL = readConfig.getApplicationURL();
-	public String userID = readConfig.getUserName();
-	public String password = readConfig.getPassword();
-
+	private ConfigReader readConfig = new ConfigReader();
+	private String baseURL = readConfig.getApplicationURL();
 	private WebDriver driver;
 	private Logger logger;
+	private CommonActions commonActions;
 
-	CommonActions commonActions ;
-	
+	public String getBaseURL() {
+		return baseURL;
+	}
+
+	public void setBaseURL(String baseURL) {
+		this.baseURL = baseURL;
+	}
+
 	public CommonActions getCommonActions() {
 		return commonActions;
 	}
@@ -44,14 +47,14 @@ public class HisTestContext {
 		PropertyConfigurator.configure("./configuration/log4j.properties");
 		// Initialize Chrome browser
 		if (browser.equalsIgnoreCase("chrome")) {
-//			// Create Object of ChromeOption Class
-//			ChromeOptions option=new ChromeOptions();
+//            // Create Object of ChromeOption Class
+//            ChromeOptions option=new ChromeOptions();
 //
-//			//add the –headless argument in option class which will run test in Headless mode
-//			option.addArguments(“–headless”);
+//            //add the –headless argument in option class which will run test in Headless mode
+//            option.addArguments(“–headless”);
 //
-//			// pass the option object in ChromeDriver constructor
-//			WebDriver driver=new ChromeDriver(option);
+//            // pass the option object in ChromeDriver constructor
+//            WebDriver driver=new ChromeDriver(option);
 
 			System.setProperty("webdriver.chrome.driver", "src/test/lib/chromedriver");
 			driver = new ChromeDriver(); // Instantiation(i.e create chrome driver object)
@@ -64,7 +67,10 @@ public class HisTestContext {
 			FirefoxOptions option = new FirefoxOptions();
 			option.setHeadless(false); // Set the setHeadless is equal to true which will run test in Headless mode
 			driver = new FirefoxDriver(option); // Instantiation(i.e create firefox driver object)
-		}  else if (browser.equalsIgnoreCase("ie")) {
+		} else if (browser.equalsIgnoreCase("phantomjs")) {
+			System.setProperty("phantomjs.binary.path", readConfig.getPhantomjsPath());
+			driver = new PhantomJSDriver(); // Instantiation(i.e create firefox driver object)
+		} else if (browser.equalsIgnoreCase("ie")) {
 			System.setProperty("webdriver.ie.driver", readConfig.getIEPath());
 			driver = new InternetExplorerDriver();
 		}
@@ -73,7 +79,7 @@ public class HisTestContext {
 		logger.info("URL is opened where page title is : " + driver.getTitle());
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
+
 		commonActions = new CommonActions(driver);
 	}
 

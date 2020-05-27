@@ -1,9 +1,9 @@
 package sd.base.security;
 
-import org.openqa.selenium.WebDriver;
-
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import pom.login.UserLogin;
+import sd.base.ConfigReader;
 import sd.infra.HisTestContext;
 
 /**
@@ -14,11 +14,8 @@ import sd.infra.HisTestContext;
 
 public class LoginToApplication {
 
-	//UserLogin userLoginObj;
-	//Login login;
-	// UserLogOut logout;
-
 	private HisTestContext context;
+	private ConfigReader configReader;
 
 	/**
 	 * 
@@ -26,56 +23,43 @@ public class LoginToApplication {
 	 */
 	public LoginToApplication(HisTestContext context) {
 		this.context = context;
-		//userLoginObj = new UserLogin(this.context.getDriver());
-		//login = new Login(context,userLoginObj);
+		configReader = new ConfigReader();
 	}
 
-	public LoginToApplication(WebDriver driver) {
-		//userLoginObj = new UserLogin(driver);
-		//login = new Login(context,userLoginObj);
+	@Given("Open {string} browser and load application")
+	public void openBrowserAndApplication(String browser) {
+		context.setUp(browser);
 	}
 
-	/*
-	 * public UserLogin getUserLoginObj() { //return userLoginObj;
-	 }*/
+	@Given("Open {string} browser and go to {string}")
+	public void openBrowserAndApplication(String browser, String BaseURL) {
+		context.setBaseURL(BaseURL);
+		context.setUp(browser);
+	}
 
-	/**
-	 * Here we will be passing the parameters from XL files
-	 */
+	@Given("Login to the application with Insta Admin")
 	public void login() {
-		
 		UserLogin userLoginObj = new UserLogin(this.context.getDriver());
-		Login login = new Login(context,userLoginObj);
-		login.setHospitalName("nmc");
-		login.setUserName("Doc001");
-		login.setPassword("Insta@123");
+		Login login = new Login(context, userLoginObj);
+		login.setHospitalName(configReader.getHospital());
+		login.setUserName(configReader.getUserName());
+		login.setPassword(configReader.getPassword());
 		login.clickSubmitBtn();
-
-		if (login.checkVisibilityOfElement()) {
-			login.clickRemindMeLater();
-		}
 	}
 
-	@Given("Login with user {string} and password {string}")
-	public void login(String userName, String password) {
+	@Given("Login with hospital name {string}, user name {string} and password {string}")
+	public void login(String hospitalName, String userName, String password) {
 		UserLogin userLoginObj = new UserLogin(this.context.getDriver());
-		Login login = new Login(context,userLoginObj);
-		login.setHospitalName("nmc");
+		Login login = new Login(context, userLoginObj);
+		login.setHospitalName(hospitalName);
 		login.setUserName(userName);
 		login.setPassword(password);
 		login.clickSubmitBtn();
+	}
 
-		/*
-		 * if(login.checkVisibilityOfElement()) { login.clickRemindMeLater(); }
-		 */
+	@And("close the driver")
+	public void closeDriver() {
+		context.getDriver().quit();
 	}
-	
-	
-	
-	@Given("Open {string} browser and go to {string}")
-	public void open_browser_and_go_to(String browser, String BaseURL){
-		context.baseURL = BaseURL;
-		context.setUp(browser);	    
-	}
-	
+
 }

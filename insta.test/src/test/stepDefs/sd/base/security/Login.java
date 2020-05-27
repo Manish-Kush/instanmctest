@@ -14,51 +14,40 @@ import sd.infra.HisTestContext;
 
 public class Login {
 
-	UserLogin userLoginObj;
-
+	private UserLogin userLoginObj;
 	private HisTestContext context;
 
-	/**
-	 * 
-	 * @param driver
-	 */
-
-	public Login(HisTestContext context) {
-		this.context = context;
-
-	}
-
-	public Login(HisTestContext context,UserLogin userLoginObject) {
+	public Login(HisTestContext context, UserLogin userLoginObject) {
 		userLoginObj = userLoginObject;
 		this.context = context;
-
 	}
 
 	public void setHospitalName(String hospital) {
-
-		context.getCommonActions().clearField(userLoginObj.hospital);
-		context.getCommonActions().enterData(hospital, userLoginObj.hospital);
+		userLoginObj.getHospital().clear();
+		context.getCommonActions().enterData(hospital, userLoginObj.getHospital());
 	}
 
 	public void setUserName(String userName) {
-		context.getCommonActions().enterData(userName, userLoginObj.userName);
+		userLoginObj.getUserName().clear();
+		context.getCommonActions().enterData(userName, userLoginObj.getUserName());
 	}
 
 	public void setPassword(String password) {
-		context.getCommonActions().enterData(password, userLoginObj.password);
+		userLoginObj.getPassword().clear();
+		context.getCommonActions().enterData(password, userLoginObj.getPassword());
 	}
 
 	public void clickSubmitBtn() {
-		context.getCommonActions().clickElement(userLoginObj.submitButton);
+		context.getCommonActions().clickElement(userLoginObj.getSubmitButton());
 	}
 
 	public void clickRemindMeLater() {
-		context.getCommonActions().clickElement(userLoginObj.remindMeLaterLink);
+		context.getCommonActions().clickElement(userLoginObj.getRemindMeLaterLink());
 	}
 
 	public boolean checkVisibilityOfElement() {
 		try {
-			return userLoginObj.remindMeLaterLink.isDisplayed();
+			return userLoginObj.getRemindMeLaterLink().isDisplayed();
 		} catch (ElementNotVisibleException | NoSuchElementException e) {
 			return false;
 		}

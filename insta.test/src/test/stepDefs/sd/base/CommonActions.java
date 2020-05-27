@@ -7,14 +7,12 @@ import java.io.IOException;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-
-
-import sd.infra.HisTestContext;
 
 public class CommonActions {
 
@@ -63,7 +61,7 @@ public class CommonActions {
 	 * @param index
 	 * @param element
 	 */
-	public  void selectDropdownByIndex(int index, WebElement element) {
+	public void selectDropdownByIndex(int index, WebElement element) {
 		Select dd = new Select(element);
 		dd.selectByIndex(index);
 	}
@@ -74,7 +72,7 @@ public class CommonActions {
 	 * @param option  takes the given input value
 	 * @param element takes the corresponding webelement object
 	 */
-	public  void selectDropdownByOption(String option, WebElement element) {
+	public void selectDropdownByOption(String option, WebElement element) {
 		Select dd = new Select(element);
 		dd.selectByVisibleText(option);
 	}
@@ -101,9 +99,9 @@ public class CommonActions {
 		return element.getText();
 	}
 
-	public void goToTheUrl( String url) {
+	public void goToTheUrl(String url) {
 
-		 driver.navigate().to(url);
+		driver.navigate().to(url);
 	}
 
 	public void clearField(WebElement element) {
@@ -190,6 +188,20 @@ public class CommonActions {
 		else if (action.equals("dismiss"))
 			alert.dismiss();
 		return message;
+	}
+	
+	public boolean isPresentAndDisplayed(final By byElement) {
+		try {
+			WebElement element = driver.findElement(byElement);
+			return element.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	public void scrollIntoView(WebElement element) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
 }

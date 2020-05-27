@@ -13,17 +13,7 @@ public class UserLogOut {
 	public UserLogOut(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-	
-	@FindBy(xpath="//img[@title=\"Logout\"]")
+
+	@FindBy(xpath = "//img[@title=\"Logout\"]")
 	private WebElement logout;
-
-	public WebElement getLogout() {
-		return logout;
-	}
-
-	public void setLogout(WebElement logout) {
-		this.logout = logout;
-	}
-	
-	
 }

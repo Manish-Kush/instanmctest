@@ -4,9 +4,8 @@ import pom.login.UserLogOut;
 import sd.infra.HisTestContext;
 
 public class LogOutOfApplication {
-	UserLogOut userLogOutObj;
-	LogOut logOut;
-	
+	private UserLogOut userLogOutObj;
+	private LogOut logOut;
 	private HisTestContext context;
 
 	/**
@@ -15,14 +14,14 @@ public class LogOutOfApplication {
 	 */
 	public LogOutOfApplication(HisTestContext context) {
 		this.context = context;
-		userLogOutObj = new UserLogOut(context.getDriver());
-		logOut = new LogOut(context,userLogOutObj);
+		userLogOutObj = new UserLogOut(this.context.getDriver());
+		logOut = new LogOut(this.context, userLogOutObj);
 	}
-	
+
 	public void logOut() {
 		logOut.clickOnlogout();
 	}
-	
+
 	public UserLogOut getUserLogOutObj() {
 		return userLogOutObj;
 	}
