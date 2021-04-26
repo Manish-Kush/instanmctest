@@ -21,7 +21,7 @@
 		<poi.version>4.0.1</poi.version>
 		<extentreports.version>4.0.9</extentreports.version>
 		<codeborne.version>1.2.1</codeborne.version>
-		<commons-io.version>2.6</commons-io.version>
+		<commons-io.version>2.7</commons-io.version>
 		<commons-lang3.version>3.8.1</commons-lang3.version>
 	</properties>
 
