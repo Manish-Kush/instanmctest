@@ -18,7 +18,7 @@
 		<lombok.version>1.18.10</lombok.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<selenium.version>3.141.59</selenium.version>
-		<poi.version>4.0.1</poi.version>
+		<poi.version>4.1.1</poi.version>
 		<extentreports.version>4.0.9</extentreports.version>
 		<codeborne.version>1.2.1</codeborne.version>
 		<commons-io.version>2.6</commons-io.version>
